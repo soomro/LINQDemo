@@ -19,14 +19,29 @@ namespace LINQDemo
 
         static void Main(string[] args)
         {
-
-            //// demo list object
+            
+            // list of objets
             List<User> users = new List<User>();
             users.Add(new User() { ID = 1, FirstName = "FirstName A", LastName = "LastName a" });
             users.Add(new User() { ID = 2, FirstName = "FirstName B", LastName = "LastName b" });
             users.Add(new User() { ID = 3, FirstName = "FirstName C", LastName = "LastName c" });
             users.Add(new User() { ID = 4, FirstName = "FirstName D", LastName = "LastName d" });
             users.Add(new User() { ID = 5, FirstName = "FirstName E", LastName = "LastName e" });
+
+            // running LINQ operators (fetching single item)
+            //// with object
+            var selectedUser = users.FirstOrDefault(u => u.ID == 14);
+            if (selectedUser != null)
+            {
+                Console.WriteLine(selectedUser.ID + "  " + selectedUser.FirstName + "  " + selectedUser.LastName + "  ");
+            }
+
+
+            // running LINQ operators (fetching multiple item) 
+            //// with objects
+            /*
+            var selectedUsers = users.Where(u => u.FirstName == "FirstName A" || u.FirstName == "FirstName E")
+                                                   .OrderByDescending(o => o.FirstName);
 
             IEnumerable<User> selectedUsers =
                 from u in users
@@ -38,10 +53,11 @@ namespace LINQDemo
             {
                 Console.WriteLine( usr.ID + "  " + usr.FirstName + "  " + usr.LastName + "  ");
             }
-            
-            /*
+            */
+
 
             //// demo list string
+            /*
             List < string > names = new List<string>();
             names.Add("Name 1");
             names.Add("Name 2");
